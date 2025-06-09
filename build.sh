@@ -4,7 +4,8 @@ TARGET=$1
 OS=$2
 
 # install deps
-sudo apt-get install devscripts equivs -y
+sudo apt update -y
+sudo apt install devscripts equivs -y
 
 git clone https://github.com/mpv-player/mpv-build.git mpv-build --depth=1
 
