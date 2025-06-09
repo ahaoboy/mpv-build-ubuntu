@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then
-    echo "not found target"
-    exit 1
-fi
-
 TARGET=$1
 OS=$2
 
