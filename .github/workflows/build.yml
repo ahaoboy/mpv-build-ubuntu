@@ -37,6 +37,11 @@ jobs:
         with:
           name: mpv-${{ matrix.os }}
           path: ./mpv-${{ matrix.os }}.deb
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: mpv-${{ matrix.os }}.tar.gz
+          path: ./mpv-${{ matrix.os }}.tar.gz
   release:
     needs: build
     runs-on: ubuntu-24.04
@@ -53,4 +58,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "mpv/*.deb"
+          artifacts: "mpv/*"
