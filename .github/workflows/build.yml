@@ -20,8 +20,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - target: x86_64-unknown-linux-gnu
-            os: ubuntu-24.04
+          # - target: x86_64-unknown-linux-gnu
+          #   os: ubuntu-24.04
           - target: x86_64-unknown-linux-gnu
             os: ubuntu-22.04
     runs-on: ${{ matrix.os }}
@@ -35,12 +35,12 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: mpv-${{ matrix.os }}
+          name: mpv-${{ matrix.os }}-deb
           path: ./mpv-${{ matrix.os }}.deb
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: mpv-${{ matrix.os }}.tar.gz
+          name: mpv-${{ matrix.os }}-tar-gz
           path: ./mpv-${{ matrix.os }}.tar.gz
   release:
     needs: build
