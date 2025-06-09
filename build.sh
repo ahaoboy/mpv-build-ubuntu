@@ -14,7 +14,16 @@ sudo apt install libass-dev libmujs-dev libavcodec-dev libavfilter-dev ffmpeg li
 
 git clone https://github.com/mpv-player/mpv-build.git mpv-build --depth=1
 
+mkdir dist
+
 cd mpv-build
+
+./rebuild -j4
+cp ./mpv/build/mpv ../dist/mpv
+cp ./mpv/build/mpv_protocols ../dist/mpv_protocols
+cp ./mpv/build/mpv.1 ../dist/mpv.1
+cp ./mpv/build/mpv.desktop ../dist/mpv.desktop
+cp -r ./mpv/build/libmpv* ../dist/
 
 mk-build-deps -s sudo -i
 dpkg-buildpackage -uc -us -b -j4
@@ -24,5 +33,7 @@ dpkg-buildpackage -uc -us -b -j4
 cp -r ./*.deb ../mpv-$OS.deb
 
 cd ..
+
+tar -czf ./mpv-${OS}.tar.gz -C dist .
 
 ls -lh .
